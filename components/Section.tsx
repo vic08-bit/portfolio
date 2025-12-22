@@ -1,0 +1,19 @@
+export default function Section({
+  id,
+  title,
+  children,
+}: {
+  id: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section
+      id={id}
+      className="py-24 border-t border-gray-200 dark:border-gray-800"
+    >
+      <h2 className="text-3xl font-semibold mb-6">{title}</h2>
+      {children}
+    </section>
+  );
+}
