@@ -1,5 +1,5 @@
 // file: components/Projects.tsx
-import { SectionWrapper } from './SectionWrapper';
+import  SectionWrapper  from './SectionWrapper';
 
 const projectsData = [
   { title: 'EDR/XDR Detection Capability Analysis', description: 'Developed a custom installer script to systematically benchmark the detection and prevention capabilities of a leading XDR solution.', technologies: ['PowerShell', 'Windows Internals', 'Endpoint Security', 'Cortex XDR'], githubLink: '#' },

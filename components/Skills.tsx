@@ -1,5 +1,5 @@
 // file: components/Skills.tsx
-import { SectionWrapper } from './SectionWrapper';
+import  SectionWrapper  from './SectionWrapper';
 const skillsData = [ { category: 'Security Operations', skills: ['Cortex XDR/XSIAM', 'Incident Response', 'Threat Hunting', 'Playbook Automation', 'XQL Queries', 'Vulnerability Assessment'] }, { category: 'Network Security', skills: ['PAN-OS Firewalls', 'IPSec & SSL VPNs', 'URL Filtering', 'DNS Security', 'WildFire', 'User-ID', 'High Availability'] }, { category: 'Networking', skills: ['TCP/IP & UDP', 'IPv4 Subnetting', 'DHCP & DNS', 'OSPF & BGP', 'VLANs', 'Cisco Switches', 'NAT'] }, { category: 'Cloud & Access', skills: ['Prisma Access', 'Prisma SD-WAN', 'VMware ESXi', 'Zero Trust Security', 'Attack Surface Mgmt', 'Threat Intel Mgmt'] }, ];
 
 const Skills = () => {

@@ -1,5 +1,5 @@
 // file: components/Contact.tsx
-import { SectionWrapper } from './SectionWrapper';
+import SectionWrapper  from './SectionWrapper';
 
 const Contact = () => (
   <SectionWrapper id="contact" className="text-center">

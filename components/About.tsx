@@ -1,5 +1,5 @@
 // file: components/About.tsx
-import { SectionWrapper } from './SectionWrapper';
+import SectionWrapper  from './SectionWrapper';
 
 const About = () => (
   <SectionWrapper id="about">
