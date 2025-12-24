@@ -1,37 +1,101 @@
 // file: components/Projects.tsx
-import  SectionWrapper  from './SectionWrapper';
+'use client';
+import { SectionWrapper } from './SectionWrapper';
+import { useRef } from 'react';
 
 const projectsData = [
-  { title: 'EDR/XDR Detection Capability Analysis', description: 'Developed a custom installer script to systematically benchmark the detection and prevention capabilities of a leading XDR solution.', technologies: ['PowerShell', 'Windows Internals', 'Endpoint Security', 'Cortex XDR'], githubLink: '#' },
-  { title: 'Secure Enterprise Infrastructure Lab', description: 'Designed and implemented a multi-segment virtual network to simulate and secure critical services.', technologies: ['GNS3/EVE-NG', 'Cisco IOS', 'Windows Server', 'Linux (DNS)'], githubLink: '#' },
+  {
+    title: 'EDR/XDR Detection Analysis',
+    subtitle: 'Benchmark the new status quo.',
+    description: 'Developed a custom script to systematically benchmark the detection and prevention capabilities of a leading XDR solution, validating its effectiveness against simulated adversary techniques.',
+    imgSrc: 'https://placehold.co/1200x800/1a1a1a/ffffff?text=EDR+Project',
+    githubLink: '#',
+  },
+  {
+    title: 'Secure Enterprise Lab',
+    subtitle: 'Unfold extraordinary security.',
+    description: 'Designed and implemented a multi-segment virtual network in GNS3 to simulate and secure critical services like DMVPN, Client-to-Site VPN, and Router Redundancy Protocols.',
+    imgSrc: 'https://placehold.co/1200x800/1a1a1a/ffffff?text=Secure+Lab',
+    githubLink: '#',
+  },
 ];
 
-const Projects = () => (
-  <SectionWrapper id="projects">
-    <div className="text-center">
-      <h2 className="text-4xl font-bold tracking-tight text-light-text-primary dark:text-dark-text-primary sm:text-5xl">Things I've Built</h2>
-      <div className="mx-auto mt-6 mb-16 h-1.5 w-24 rounded-full bg-accent"></div>
-    </div>
-    <div className="mx-auto grid max-w-5xl grid-cols-1 gap-10 md:grid-cols-2">
-      {projectsData.map((project) => (
-        <div key={project.title} className="group flex flex-col rounded-2xl bg-glass-light dark:bg-glass-dark shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-glass-border backdrop-blur-2xl">
-          <div className="flex-grow p-8">
-            <div className="flex items-center justify-between">
-              <h3 className="text-xl font-bold text-light-text-primary dark:text-dark-text-primary group-hover:text-accent transition-colors">{project.title}</h3>
-              <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="text-light-text-secondary dark:text-dark-text-secondary hover:text-accent transition-colors"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.54 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
-            </div>
-            <p className="mt-4 text-light-text-secondary dark:text-dark-text-secondary">{project.description}</p>
-          </div>
-          <div className="border-t border-glass-border p-6">
-            <ul className="flex flex-wrap gap-2">
-              {project.technologies.map((tech) => (
-                <li key={tech} className="rounded-full bg-accent/10 px-4 py-1.5 font-mono text-sm text-accent">{tech}</li>
-              ))}
-            </ul>
-          </div>
+const Projects = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const { current } = scrollRef;
+      // Scroll by one card width
+      const scrollAmount = direction === 'left' ? -current.offsetWidth : current.offsetWidth;
+      current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <SectionWrapper id="projects">
+      <div className="flex items-center justify-between mb-12 px-4">
+        <h2 className="text-4xl font-bold tracking-tight text-light-text-primary dark:text-dark-text-primary">
+          Things I've Built
+        </h2>
+        
+        {/* Navigation Arrows */}
+        <div className="flex gap-4">
+          <button onClick={() => scroll('left')} className="p-3 rounded-full border border-light-border dark:border-dark-border hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-light-text-primary dark:text-dark-text-primary">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+          </button>
+          <button onClick={() => scroll('right')} className="p-3 rounded-full border border-light-border dark:border-dark-border hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-light-text-primary dark:text-dark-text-primary">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
         </div>
-      ))}
-    </div>
-  </SectionWrapper>
-);
+      </div>
+
+      {/* Carousel */}
+      <div ref={scrollRef} className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-4 pb-12">
+        {projectsData.map((project, index) => (
+          // Adjusted width to be responsive (85vw on mobile, 900px max on desktop)
+          // Removed rigid min-width that caused cutoff
+          <div key={index} className="w-[85vw] md:w-[80vw] lg:w-[900px] flex-shrink-0 snap-center rounded-[2.5rem] bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border overflow-hidden shadow-sm">
+            <div className="flex flex-col lg:flex-row h-full">
+              
+              {/* Text Content */}
+              <div className="p-8 lg:p-12 flex-1 flex flex-col justify-center order-2 lg:order-1">
+                <h3 className="text-3xl font-bold text-light-text-primary dark:text-dark-text-primary mb-3">
+                  {project.title}
+                </h3>
+                <p className="text-base font-semibold text-accent mb-6">
+                  {project.subtitle}
+                </p>
+                {/* Added max-width to text to prevent horizontal overflow within flex item */}
+                <p className="text-lg text-light-text-secondary dark:text-dark-text-secondary mb-10 leading-relaxed max-w-md">
+                  {project.description}
+                </p>
+                
+                <div>
+                  <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="inline-block rounded-full bg-accent px-8 py-3 text-base font-semibold text-white transition-transform hover:scale-105 shadow-md hover:shadow-lg">
+                    View Project
+                  </a>
+                </div>
+              </div>
+
+              {/* Image Content */}
+              <div className="relative h-64 lg:h-auto lg:w-[45%] bg-gray-100 dark:bg-gray-800 order-1 lg:order-2">
+                 <img 
+                   src={project.imgSrc} 
+                   alt={project.title} 
+                   className="absolute inset-0 w-full h-full object-cover"
+                 />
+              </div>
+
+            </div>
+          </div>
+        ))}
+      </div>
+    </SectionWrapper>
+  );
+};
 export default Projects;

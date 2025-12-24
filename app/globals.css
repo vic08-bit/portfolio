@@ -7,18 +7,17 @@ html {
   scroll-behavior: smooth;
 }
 
-/* --- NEW: DYNAMIC GRADIENT BACKGROUND --- */
-body {
-  /* Light Mode Background */
-  @apply bg-white text-light-text-secondary;
-  background-image: radial-gradient(circle at top left, #e0e7ff 10%, transparent 40%),
-                    radial-gradient(circle at bottom right, #e0e7ff 10%, transparent 40%);
-  
-  /* Dark Mode Background */
-  @apply dark:bg-slate-900 dark:text-dark-text-secondary;
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
 }
 
-.dark body {
-  background-image: radial-gradient(circle at top left, #0f172a 10%, transparent 40%),
-                    radial-gradient(circle at bottom right, #0f172a 10%, transparent 40%);
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+body {
+  @apply bg-light-bg text-light-text-secondary dark:bg-dark-bg dark:text-dark-text-secondary;
 }

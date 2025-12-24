@@ -9,22 +9,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // --- Text & Accent Colors ---
+        'light-bg': '#ffffff',
+        'light-card': '#f3f4f6',
         'light-text-primary': '#111827',
         'light-text-secondary': '#374151',
-        'dark-text-primary': '#f8fafc',
-        'dark-text-secondary': '#94a3b8',
-        'accent': '#1520a6',
-        
-        // --- NEW: Colors for the Glass Effect ---
-        'glass-light': 'rgba(255, 255, 255, 0.5)', // Semi-transparent white
-        'glass-dark': 'rgba(15, 23, 42, 0.6)',   // Semi-transparent deep slate
-        'glass-border': 'rgba(255, 255, 255, 0.1)',
+        'dark-bg': '#050505', 
+        'dark-card': '#0a0a0a',
+        'dark-text-primary': '#ededed',
+        'dark-text-secondary': '#a1a1aa',
+        'accent': '#2563eb', // The unified Blue for your name
       },
-      // --- NEW: Enabling the blur effect ---
-      backdropBlur: {
-        '2xl': '40px',
-      },
+      // Animations removed as requested
     },
   },
   plugins: [],

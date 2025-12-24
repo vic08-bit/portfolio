@@ -1,24 +1,23 @@
-// components/SectionWrapper.tsx
+// file: components/SectionWrapper.tsx
+'use client';
+import { motion } from 'framer-motion';
 
-import { ReactNode } from "react";
-
-// 1. Update the interface to include className
-interface SectionWrapperProps {
-  children: ReactNode;
-  id: string;
-  className?: string; // <--- ADD THIS LINE
-}
-
-const SectionWrapper = ({ children, id, className }: SectionWrapperProps) => {
-  return (
-    <section 
-      id={id} 
-      // 2. Append the passed className to your existing classes
-      className={`mx-auto max-w-7xl px-6 lg:px-8 py-24 sm:py-32 ${className || ""}`}
-    >
-      {children}
-    </section>
-  );
+const sectionVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
 };
 
-export default SectionWrapper;
+export const SectionWrapper = ({ children, id }: { children: React.ReactNode; id: string; }) => (
+  <motion.section
+    id={id}
+    className="w-full py-24 sm:py-32"
+    variants={sectionVariants}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.1 }}
+  >
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {children}
+    </div>
+  </motion.section>
+);
