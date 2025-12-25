@@ -1,6 +1,7 @@
-// components/SectionWrapper.tsx
+"use client"; // <--- THIS LINE IS CRITICAL
+
 import { ReactNode } from "react";
-import { motion, Variants } from "framer-motion"; // <--- 1. Import Variants
+import { motion, Variants } from "framer-motion";
 
 interface SectionWrapperProps {
   children: ReactNode;
@@ -8,7 +9,6 @@ interface SectionWrapperProps {
   className?: string;
 }
 
-// 2. Add the ": Variants" type annotation here
 const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
@@ -16,7 +16,7 @@ const sectionVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeOut" // Now TS knows this is a valid Easing type, not just a string
+      ease: "easeOut"
     }
   }
 };
@@ -35,5 +35,3 @@ export const SectionWrapper = ({ children, id, className }: SectionWrapperProps)
     </motion.section>
   );
 };
-
-export default SectionWrapper;
