@@ -5,26 +5,23 @@ const skillsData = [ { category: 'Security Operations', skills: ['Cortex XDR/XSI
 const Skills = () => {
   return (
     <SectionWrapper id="skills">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold tracking-tight text-light-text-primary dark:text-dark-text-primary sm:text-5xl">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-light-text-primary dark:text-white">
           Skills & Expertise
         </h2>
-        {/* Changed underline to a small dot for cleaner look */}
-        <div className="mx-auto mt-4 h-1.5 w-1.5 rounded-full bg-accent"></div>
+        {/* Standard Blue Line (Replaces the dot) */}
+        <div className="mx-auto mt-4 h-1.5 w-20 rounded-full bg-accent"></div>
       </div>
       
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {/* Grid: 1 column on mobile, 2 on tablet, 4 on desktop */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {skillsData.map((group) => (
-          <div key={group.category} className="rounded-2xl bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border p-8 shadow-sm">
-            {/* Category Title - Kept Blue/Accent for hierarchy */}
+          <div key={group.category} className="rounded-2xl bg-light-card dark:bg-[#0a0a0a] border border-light-border dark:border-white/10 p-8 shadow-sm hover:shadow-md transition-shadow">
             <h3 className="mb-6 text-lg font-bold text-accent">{group.category}</h3>
             
             <div className="flex flex-wrap gap-2">
               {group.skills.map((skill) => (
-                // FIX: Changed from blue text to "Glass" style
-                // Light Mode: Gray background, Dark text
-                // Dark Mode: White/Transparent background, White text. MUCH more readable.
-                <span key={skill} className="rounded-lg bg-gray-100 dark:bg-white/10 px-3 py-1.5 text-xs font-medium text-light-text-primary dark:text-dark-text-primary border border-transparent dark:border-white/10">
+                <span key={skill} className="rounded-lg bg-white dark:bg-white/5 px-3 py-1.5 text-xs md:text-sm font-medium text-light-text-primary dark:text-gray-200 border border-light-border dark:border-white/10">
                   {skill}
                 </span>
               ))}

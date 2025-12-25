@@ -24,7 +24,7 @@ const Hero = () => {
         </h1>
         
         {/* Name is now ALWAYS Accent Blue */}
-        <h2 className="text-6xl md:text-8xl lg:text-8xl font-black tracking-tighter text-accent mb-6 drop-shadow-sm">
+        <h2 className="text-6xl md:text-5xl lg:text-8xl font-black tracking-tighter text-accent mb-6 drop-shadow-sm">
           Vignesh R.
         </h2>
         
