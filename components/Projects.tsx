@@ -33,15 +33,17 @@ const Projects = () => {
 
   return (
     <SectionWrapper id="projects">
-      {/* Standardized Header: Centered + Blue Line */}
-      <div className="flex flex-col items-center justify-center mb-12 text-center relative">
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-light-text-primary dark:text-white">
-          Things I've Built
-        </h2>
-        <div className="mt-4 h-1.5 w-20 rounded-full bg-accent"></div>
+      {/* Header + Arrows */}
+      <div className="flex flex-col md:flex-row items-center justify-between mb-12 text-center md:text-left">
+        <div className="mb-6 md:mb-0">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-light-text-primary dark:text-dark-text-primary">
+            Things I've Built
+          </h2>
+          <div className="mt-4 h-1.5 w-20 rounded-full bg-accent mx-auto md:mx-0"></div>
+        </div>
         
-        {/* Navigation Arrows (Absolute positioned on desktop, hidden on mobile) */}
-        <div className="hidden md:flex gap-4 absolute right-0 bottom-0">
+        {/* Navigation Arrows (Hidden on mobile, visible on desktop) */}
+        <div className="hidden md:flex gap-4">
           <button onClick={() => scroll('left')} className="p-3 rounded-full border border-light-border dark:border-white/10 bg-white dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-light-text-primary dark:text-white">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -56,13 +58,15 @@ const Projects = () => {
       </div>
 
       {/* Carousel Container */}
-      <div ref={scrollRef} className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-8">
+      <div ref={scrollRef} className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-2 pb-12">
         {projectsData.map((project, index) => (
-          // Mobile: w-[85vw], Desktop: w-[900px]
-          <div key={index} className="min-w-[85vw] lg:min-w-[900px] flex-shrink-0 snap-center rounded-[2rem] bg-light-card dark:bg-[#0a0a0a] border border-light-border dark:border-white/10 overflow-hidden shadow-sm">
+          // Mobile: w-[90vw] (Wider card)
+          // Desktop: w-[900px]
+          <div key={index} className="min-w-[90vw] md:min-w-[60vw] lg:min-w-[900px] flex-shrink-0 snap-center rounded-[2rem] bg-light-card dark:bg-[#0a0a0a] border border-light-border dark:border-white/10 overflow-hidden shadow-sm">
             <div className="flex flex-col lg:flex-row h-full">
               
               {/* Text Content */}
+              {/* Mobile: Order 2 (Bottom) | Desktop: Order 1 (Left) */}
               <div className="p-8 lg:p-12 flex-1 flex flex-col justify-center order-2 lg:order-1">
                 <h3 className="text-2xl lg:text-4xl font-bold text-light-text-primary dark:text-white mb-3">
                   {project.title}
@@ -70,7 +74,7 @@ const Projects = () => {
                 <p className="text-sm font-semibold text-accent mb-6">
                   {project.subtitle}
                 </p>
-                <p className="text-base lg:text-lg text-light-text-secondary dark:text-gray-300 mb-8 leading-relaxed max-w-md">
+                <p className="text-base lg:text-lg text-light-text-secondary dark:text-gray-300 mb-8 leading-relaxed">
                   {project.description}
                 </p>
                 
@@ -82,7 +86,8 @@ const Projects = () => {
               </div>
 
               {/* Image Content */}
-              <div className="relative h-56 lg:h-auto lg:w-[45%] bg-gray-200 dark:bg-gray-800 order-1 lg:order-2">
+              {/* Mobile: Taller aspect ratio (4/3) to show full image. Order 1 (Top) */}
+              <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-auto lg:w-[45%] bg-gray-200 dark:bg-gray-800 order-1 lg:order-2">
                  <img src={project.imgSrc} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
               </div>
 
