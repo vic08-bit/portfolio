@@ -5,16 +5,16 @@ import { useRef } from 'react';
 
 const projectsData = [
   {
-    title: 'EDR/XDR Detection Analysis',
+    title: 'EDR/XDR Analysis', // Shortened title for mobile fit
     subtitle: 'Benchmark the new status quo.',
-    description: 'Developed a custom script to systematically benchmark the detection and prevention capabilities of a leading XDR solution, validating its effectiveness against simulated adversary techniques.',
+    description: 'Developed a custom script to systematically benchmark the detection and prevention capabilities of a leading XDR solution.',
     imgSrc: 'https://placehold.co/1200x800/1a1a1a/ffffff?text=EDR+Project',
     githubLink: '#',
   },
   {
     title: 'Secure Enterprise Lab',
     subtitle: 'Unfold extraordinary security.',
-    description: 'Designed and implemented a multi-segment virtual network in GNS3 to simulate and secure critical services like DMVPN, Client-to-Site VPN, and Router Redundancy Protocols.',
+    description: 'Designed and implemented a multi-segment virtual network in GNS3 to simulate and secure critical services like DMVPN.',
     imgSrc: 'https://placehold.co/1200x800/1a1a1a/ffffff?text=Secure+Lab',
     githubLink: '#',
   },
@@ -34,7 +34,7 @@ const Projects = () => {
   return (
     <SectionWrapper id="projects">
       {/* Header + Arrows */}
-      <div className="flex flex-col md:flex-row items-center justify-between mb-12 text-center md:text-left">
+      <div className="flex flex-col md:flex-row items-center justify-between mb-8 md:mb-12 text-center md:text-left">
         <div className="mb-6 md:mb-0">
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-light-text-primary dark:text-dark-text-primary">
             Things I've Built
@@ -58,40 +58,39 @@ const Projects = () => {
       </div>
 
       {/* Carousel Container */}
-      <div ref={scrollRef} className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-2 pb-12">
+      <div ref={scrollRef} className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-2 pb-12">
         {projectsData.map((project, index) => (
-          // Mobile: w-[90vw] (Wider card)
+          // Card Container
+          // Mobile: w-[85vw] (Standard mobile width)
           // Desktop: w-[900px]
-          <div key={index} className="min-w-[90vw] md:min-w-[60vw] lg:min-w-[900px] flex-shrink-0 snap-center rounded-[2rem] bg-light-card dark:bg-[#0a0a0a] border border-light-border dark:border-white/10 overflow-hidden shadow-sm">
-            <div className="flex flex-col lg:flex-row h-full">
-              
-              {/* Text Content */}
-              {/* Mobile: Order 2 (Bottom) | Desktop: Order 1 (Left) */}
-              <div className="p-8 lg:p-12 flex-1 flex flex-col justify-center order-2 lg:order-1">
-                <h3 className="text-2xl lg:text-4xl font-bold text-light-text-primary dark:text-white mb-3">
-                  {project.title}
-                </h3>
-                <p className="text-sm font-semibold text-accent mb-6">
-                  {project.subtitle}
-                </p>
-                <p className="text-base lg:text-lg text-light-text-secondary dark:text-gray-300 mb-8 leading-relaxed">
-                  {project.description}
-                </p>
-                
-                <div>
-                  <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="inline-block rounded-full bg-accent px-8 py-3 text-sm font-bold text-white transition-transform hover:scale-105 shadow-md shadow-blue-500/20">
-                    View Project
-                  </a>
-                </div>
-              </div>
-
-              {/* Image Content */}
-              {/* Mobile: Taller aspect ratio (4/3) to show full image. Order 1 (Top) */}
-              <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-auto lg:w-[45%] bg-gray-200 dark:bg-gray-800 order-1 lg:order-2">
-                 <img src={project.imgSrc} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
-              </div>
-
+          <div key={index} className="min-w-[85vw] md:min-w-[60vw] lg:min-w-[900px] flex-shrink-0 snap-center rounded-3xl bg-light-card dark:bg-[#0a0a0a] border border-light-border dark:border-white/10 overflow-hidden shadow-sm flex flex-col lg:flex-row">
+            
+            {/* Image Content - ORDER 1 (Top) */}
+            {/* FIX: Use h-48 (192px) for mobile instead of aspect ratio. Much shorter. */}
+            <div className="relative h-48 sm:h-64 lg:h-auto lg:w-[45%] bg-gray-200 dark:bg-gray-800 lg:order-2">
+                <img src={project.imgSrc} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
             </div>
+
+            {/* Text Content - ORDER 2 (Bottom) */}
+            <div className="p-6 md:p-8 lg:p-12 flex-1 flex flex-col justify-center lg:order-1">
+              <h3 className="text-2xl font-bold text-light-text-primary dark:text-white mb-2">
+                {project.title}
+              </h3>
+              <p className="text-sm font-semibold text-accent mb-4">
+                {project.subtitle}
+              </p>
+              {/* line-clamp-3 prevents huge text blocks on mobile */}
+              <p className="text-sm md:text-base lg:text-lg text-light-text-secondary dark:text-gray-300 mb-6 leading-relaxed line-clamp-4 lg:line-clamp-none">
+                {project.description}
+              </p>
+              
+              <div>
+                <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="inline-block rounded-full bg-accent px-6 py-2.5 text-sm font-bold text-white transition-transform hover:scale-105 shadow-md shadow-blue-500/20">
+                  View Project
+                </a>
+              </div>
+            </div>
+
           </div>
         ))}
       </div>
